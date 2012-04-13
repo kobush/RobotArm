@@ -1,0 +1,172 @@
+﻿<Window x:Class="PololuMaestro.Dashboard.PololuMaestroUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Title="Pololu Maestro Dashboard"
+             Height="560" Width="800" Background="White">
+	<Window.Resources>
+		<LinearGradientBrush x:Key="ProgressBarBackground" EndPoint="1,0" StartPoint="0,0">
+			<GradientStop Color="#BABABA" Offset="0"/>
+			<GradientStop Color="#C7C7C7" Offset="0.5"/>
+			<GradientStop Color="#BABABA" Offset="1"/>
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="ProgressBarBorderBrush" EndPoint="0,1" StartPoint="0,0">
+			<GradientStop Color="#B2B2B2" Offset="0"/>
+			<GradientStop Color="#8C8C8C" Offset="1"/>
+		</LinearGradientBrush>
+
+		<Style x:Key="PositionProgressBarTemplate" TargetType="{x:Type ProgressBar}">
+			<Setter Property="Foreground" Value="#01D328"/>
+			<Setter Property="Background" Value="{StaticResource ProgressBarBackground}"/>
+			<Setter Property="BorderBrush" Value="{StaticResource ProgressBarBorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type ProgressBar}">
+						<Grid x:Name="TemplateRoot" SnapsToDevicePixels="true">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Determinate"/>
+									<VisualState x:Name="Indeterminate"/>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+                            <Rectangle Name="PART_Track" Margin="1" />
+                            <Decorator x:Name="PART_Indicator" Margin="1" HorizontalAlignment="Left">
+								<Grid x:Name="Foreground">
+									<Ellipse Width="6" Height="6" x:Name="Indicator" 
+									Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"
+									Fill="{TemplateBinding Foreground}" HorizontalAlignment="Right" Margin="0,0,-3,0"/>
+								</Grid>
+							</Decorator>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="Orientation" Value="Vertical">
+								<Setter Property="LayoutTransform" TargetName="TemplateRoot">
+									<Setter.Value>
+										<RotateTransform Angle="-90"/>
+									</Setter.Value>
+								</Setter>
+							</Trigger>
+							<Trigger Property="IsIndeterminate" Value="true">
+								<Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
+							</Trigger>
+							<Trigger Property="IsIndeterminate" Value="false"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+        
+        <Style x:Key="StatusBorderStyle" TargetType="Border">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                    <Setter Property="Border.Background" Value="#FF83C23B" />
+                </DataTrigger>
+            </Style.Triggers>
+        	<Setter Property="BorderThickness" Value="0.5"/>
+        	<Setter Property="CornerRadius" Value="12"/>
+        	<Setter Property="BorderBrush" Value="#FF939393"/>
+        	<Setter Property="Background" Value="#FFE4E4E4"/>
+        </Style>
+	</Window.Resources>
+    
+    <Grid TextBlock.FontSize="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Margin="12,12,12,0" Style="{StaticResource StatusBorderStyle}">
+    		<StackPanel Orientation="Horizontal">
+    			<TextBlock HorizontalAlignment="Left" Margin="12,8,8,8" Text="Device:" VerticalAlignment="Top" />
+    			<ComboBox x:Name="devicesCombo" IsEditable="False" ItemsSource="{Binding Devices}" VerticalAlignment="Center" Width="180" 
+    				DisplayMemberPath="DisplayName" SelectedValuePath="SerialNumber" 
+    				SelectedValue="{Binding DeviceSerialNumber}"/>
+    			<Button Content="Connect" Padding="12,1" Margin="12,0" VerticalAlignment="Center"
+    				Command="{Binding ConnectCommand}" 
+    				CommandParameter="{Binding SelectedValue, ElementName=devicesCombo}"  />
+    		</StackPanel>
+    	</Border>
+        <DockPanel Grid.IsSharedSizeScope="True" Margin="12" Grid.Row="1" >
+        	<Border Background="#FF76C2E2" CornerRadius="12,12,0,0" VerticalAlignment="Top" DockPanel.Dock="Top" >
+        		<Grid Margin="4" TextBlock.FontWeight="SemiBold" TextBlock.Foreground="Black">
+        			<Grid.ColumnDefinitions>
+        				<ColumnDefinition Width="40" SharedSizeGroup="col1"/>
+        				<ColumnDefinition Width="120" SharedSizeGroup="col2"/>
+        				<ColumnDefinition Width="160" SharedSizeGroup="col3"/>
+        				<ColumnDefinition Width="100" SharedSizeGroup="col4"/>
+        				<ColumnDefinition Width="100" SharedSizeGroup="col5"/>
+        				<ColumnDefinition Width="100" SharedSizeGroup="col6"/>
+        				<ColumnDefinition Width="100" SharedSizeGroup="col7"/>
+        			</Grid.ColumnDefinitions>
+
+        			<TextBlock HorizontalAlignment="Center" ><Run Text="#"/></TextBlock>
+        			<TextBlock Grid.Column="1" HorizontalAlignment="Center" ><Run Text="Name"/></TextBlock>
+        			<TextBlock Grid.Column="3" HorizontalAlignment="Center" ><Run Text="Target"/></TextBlock>
+        			<TextBlock Grid.Column="4" HorizontalAlignment="Center" ><Run Text="Speed"/></TextBlock>
+        			<TextBlock Grid.Column="5" HorizontalAlignment="Center" ><Run Text="Acceleration"/></TextBlock>
+        			<TextBlock Grid.Column="6" HorizontalAlignment="Center" ><Run Text="Position"/></TextBlock>
+        		</Grid>
+        	</Border>
+        	<ScrollViewer>
+
+        		<ItemsControl x:Name="servoList" ItemsSource="{Binding Servos}">
+        			<ItemsControl.ItemTemplate>
+        				<DataTemplate>
+        					<Border Background="#FFA873" Margin="0,3,0,0" d:DesignWidth="679.88" d:DesignHeight="66.6">
+        						<Grid>
+        							<Grid.RowDefinitions>
+        								<RowDefinition/>
+        								<RowDefinition/>
+        							</Grid.RowDefinitions>
+        							<Grid.ColumnDefinitions>
+        								<ColumnDefinition SharedSizeGroup="col1"/>
+        								<ColumnDefinition SharedSizeGroup="col2"/>
+        								<ColumnDefinition SharedSizeGroup="col3"/>
+        								<ColumnDefinition SharedSizeGroup="col4"/>
+        								<ColumnDefinition SharedSizeGroup="col5"/>
+        								<ColumnDefinition SharedSizeGroup="col6"/>
+        								<ColumnDefinition SharedSizeGroup="col7"/>
+        							</Grid.ColumnDefinitions>
+
+        							<TextBlock Grid.RowSpan="2" FontSize="20" FontWeight="Bold" TextAlignment="Right"
+        								Text="{Binding Index}" Margin="8,4" />
+
+        							<TextBlock Grid.Column="1" Grid.RowSpan="2" Text="{Binding Name}" 
+        								VerticalAlignment="Center" Margin="8,4"/>
+
+        							<Grid Grid.Column="2" VerticalAlignment="Center" Margin="0,0,22,0">
+        								<Slider 
+        									IsMoveToPointEnabled="True"
+        									Value="{Binding Target, Mode=TwoWay}" 
+        									Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" TickPlacement="BottomRight" TickFrequency="100" />
+                                        <ProgressBar x:Name="positionIndicator" Margin="5,0,5,4"
+        									Value="{Binding Position}"
+        									Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Style="{DynamicResource PositionProgressBarTemplate}" IsHitTestVisible="False" />
+        							</Grid>
+
+        							<Button Grid.Column="2" HorizontalAlignment="Right" Width="18" Height="18" Content="N" TextBlock.FontSize="10"
+        								Command="{Binding DataContext.SetNeutralPositionCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+        								CommandParameter="{Binding .}" />
+
+        							<TextBlock Grid.Column="3" TextAlignment="Right" Text="{Binding Target, FallbackValue=0, StringFormat=F2}" Margin="8,4"/>
+        							<TextBlock Grid.Column="4" TextAlignment="Right" Text="{Binding Speed, FallbackValue=0}" Margin="8,4"/>
+        							<TextBlock Grid.Column="5" TextAlignment="Right" Text="{Binding Acceleration, FallbackValue=0}" Margin="8,4"/>
+        							<TextBlock Grid.Column="6" TextAlignment="Right" Text="{Binding Position, FallbackValue=0, StringFormat=F2}" Margin="8,4"/>
+
+        						</Grid>
+        					</Border>
+        					<DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsMoving}" Value="true" >
+                                    <Setter TargetName="positionIndicator" Property="Foreground" Value="Blue" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+        				</DataTemplate>
+        			</ItemsControl.ItemTemplate>
+        		</ItemsControl>
+        	</ScrollViewer>
+        </DockPanel>
+    </Grid>
+</Window>
