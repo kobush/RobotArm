@@ -4,12 +4,12 @@ using Microsoft.Dss.ServiceModel.Dssp;
 using W3C.Soap;
 using armproxy = Microsoft.Robotics.Services.ArticulatedArm.Proxy;
 
-namespace Kobush.Simulation.RobotArm
+namespace Kobush.RobotArm.Simulation
 {
 	public sealed class Contract
 	{
 		[DataMember]
-        public const string Identifier = "http://schemas.tempuri.org/2012/03/simulatedrobotarm.html";
+        public const string Identifier = "http://schemas.tempuri.org/2012/04/simulatedrobotarm.html";
 	}
 	
 	[DataContract]

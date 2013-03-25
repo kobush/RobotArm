@@ -9,203 +9,60 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
-[assembly: global::System.Reflection.AssemblyProductAttribute("RobotArm")]
-[assembly: global::System.Reflection.AssemblyTitleAttribute("RobotArm")]
-[assembly: global::Microsoft.Dss.Core.Attributes.ServiceDeclarationAttribute(global::Microsoft.Dss.Core.Attributes.DssServiceDeclaration.Proxy, SourceAssemblyKey="RobotArm.Y2012.M04, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d6f1900a66fa" +
-    "3281")]
+[assembly: global::System.Reflection.AssemblyProductAttribute("RobotArmDashboard")]
+[assembly: global::System.Reflection.AssemblyTitleAttribute("RobotArmDashboard")]
+[assembly: global::Microsoft.Dss.Core.Attributes.ServiceDeclarationAttribute(global::Microsoft.Dss.Core.Attributes.DssServiceDeclaration.Proxy, SourceAssemblyKey="RobotArmDashboard.Y2012.M04, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d6f" +
+    "1900a66fa3281")]
 [assembly: global::System.Security.SecurityTransparentAttribute()]
 [assembly: global::System.Security.SecurityRulesAttribute(global::System.Security.SecurityRuleSet.Level1)]
 
-namespace RobotArm.Proxy {
+namespace Kobush.RobotArm.Dashboard.Proxy {
     
     
-    [global::Microsoft.Dss.Core.Attributes.DataContractAttribute(Namespace="http://schemas.tempuri.org/2012/04/robotarm.html")]
-    [global::System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.tempuri.org/2012/04/robotarm.html", ElementName="RobotArmState")]
-    public class RobotArmState : global::Microsoft.Robotics.Services.ArticulatedArm.Proxy.ArticulatedArmState, global::Microsoft.Dss.Core.IDssSerializable, global::System.ICloneable {
+    [global::Microsoft.Dss.Core.Attributes.DataContractAttribute(Namespace="http://schemas.tempuri.org/2012/04/robotarmdashboard.html")]
+    [global::System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.tempuri.org/2012/04/robotarmdashboard.html", ElementName="RobotArmDashboardState")]
+    public class RobotArmDashboardState : global::Microsoft.Dss.Core.IDssSerializable, global::System.ICloneable {
         
-        public RobotArmState() {
+        public RobotArmDashboardState() {
         }
         
         /// <summary>
-        ///Copies the data member values of the current RobotArmState to the specified target object
-        ///</summary>
-        ///<param name="target">target object (must be an instance of)</param>
-        public override void CopyTo(Microsoft.Dss.Core.IDssSerializable target) {
-            base.CopyTo(target);
-            global::RobotArm.Proxy.RobotArmState typedTarget = ((global::RobotArm.Proxy.RobotArmState)(target));
-        }
-        
-        /// <summary>
-        ///Clones RobotArmState
-        ///</summary>
-        ///<returns>cloned value</returns>
-        public override object Clone() {
-            global::RobotArm.Proxy.RobotArmState target0 = new global::RobotArm.Proxy.RobotArmState();
-            this.CopyTo(target0);
-            return target0;
-        }
-        
-        /// <summary>
-        ///Serializes the data member values of the current RobotArmState to the specified writer
-        ///</summary>
-        ///<param name="writer">the writer to which to serialize</param>
-        public override void Serialize(System.IO.BinaryWriter writer) {
-            base.Serialize(writer);
-        }
-        
-        /// <summary>
-        ///Deserializes RobotArmState
-        ///</summary>
-        ///<param name="reader">the reader from which to deserialize</param>
-        ///<returns>deserialized RobotArmState</returns>
-        public override object Deserialize(System.IO.BinaryReader reader) {
-            base.Deserialize(reader);
-            return this;
-        }
-    }
-    
-    [global::Microsoft.Dss.Core.Attributes.DataContractAttribute(Namespace="http://schemas.tempuri.org/2012/04/robotarm.html")]
-    [global::System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.tempuri.org/2012/04/robotarm.html", ElementName="JointState")]
-    public class JointState : global::Microsoft.Dss.Core.IDssSerializable, global::System.ICloneable {
-        
-        public JointState() {
-        }
-        
-        private string _Name;
-        
-        [global::Microsoft.Dss.Core.Attributes.DataMemberAttribute(Order=-1)]
-        public string Name {
-            get {
-                return this._Name;
-            }
-            set {
-                this._Name = value;
-            }
-        }
-        
-        private int _Channel;
-        
-        [global::Microsoft.Dss.Core.Attributes.DataMemberAttribute(Order=-1)]
-        public int Channel {
-            get {
-                return this._Channel;
-            }
-            set {
-                this._Channel = value;
-            }
-        }
-        
-        private double _Angle;
-        
-        [global::Microsoft.Dss.Core.Attributes.DataMemberAttribute(Order=-1)]
-        public double Angle {
-            get {
-                return this._Angle;
-            }
-            set {
-                this._Angle = value;
-            }
-        }
-        
-        private double _TargetAngle;
-        
-        [global::Microsoft.Dss.Core.Attributes.DataMemberAttribute(Order=-1)]
-        public double TargetAngle {
-            get {
-                return this._TargetAngle;
-            }
-            set {
-                this._TargetAngle = value;
-            }
-        }
-        
-        private double _MinAngle;
-        
-        [global::Microsoft.Dss.Core.Attributes.DataMemberAttribute(Order=-1)]
-        public double MinAngle {
-            get {
-                return this._MinAngle;
-            }
-            set {
-                this._MinAngle = value;
-            }
-        }
-        
-        private double _MaxAngle;
-        
-        [global::Microsoft.Dss.Core.Attributes.DataMemberAttribute(Order=-1)]
-        public double MaxAngle {
-            get {
-                return this._MaxAngle;
-            }
-            set {
-                this._MaxAngle = value;
-            }
-        }
-        
-        /// <summary>
-        ///Copies the data member values of the current JointState to the specified target object
+        ///Copies the data member values of the current RobotArmDashboardState to the specified target object
         ///</summary>
         ///<param name="target">target object (must be an instance of)</param>
         public virtual void CopyTo(Microsoft.Dss.Core.IDssSerializable target) {
-            global::RobotArm.Proxy.JointState typedTarget = ((global::RobotArm.Proxy.JointState)(target));
-            typedTarget._Name = this._Name;
-            typedTarget._Channel = this._Channel;
-            typedTarget._Angle = this._Angle;
-            typedTarget._TargetAngle = this._TargetAngle;
-            typedTarget._MinAngle = this._MinAngle;
-            typedTarget._MaxAngle = this._MaxAngle;
+            global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardState typedTarget = ((global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardState)(target));
         }
         
         /// <summary>
-        ///Clones JointState
+        ///Clones RobotArmDashboardState
         ///</summary>
         ///<returns>cloned value</returns>
         public virtual object Clone() {
-            global::RobotArm.Proxy.JointState target0 = new global::RobotArm.Proxy.JointState();
+            global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardState target0 = new global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardState();
             this.CopyTo(target0);
             return target0;
         }
         
         /// <summary>
-        ///Serializes the data member values of the current JointState to the specified writer
+        ///Serializes the data member values of the current RobotArmDashboardState to the specified writer
         ///</summary>
         ///<param name="writer">the writer to which to serialize</param>
         public virtual void Serialize(System.IO.BinaryWriter writer) {
-            if ((this._Name == null)) {
-                writer.Write(((byte)(0)));
-            }
-            else {
-                writer.Write(((byte)(1)));
-                writer.Write(this._Name);
-            }
-            writer.Write(this._Channel);
-            writer.Write(this._Angle);
-            writer.Write(this._TargetAngle);
-            writer.Write(this._MinAngle);
-            writer.Write(this._MaxAngle);
         }
         
         /// <summary>
-        ///Deserializes JointState
+        ///Deserializes RobotArmDashboardState
         ///</summary>
         ///<param name="reader">the reader from which to deserialize</param>
-        ///<returns>deserialized JointState</returns>
+        ///<returns>deserialized RobotArmDashboardState</returns>
         public virtual object Deserialize(System.IO.BinaryReader reader) {
-            if ((reader.ReadByte() != 0)) {
-                this._Name = reader.ReadString();
-            }
-            this._Channel = reader.ReadInt32();
-            this._Angle = reader.ReadDouble();
-            this._TargetAngle = reader.ReadDouble();
-            this._MinAngle = reader.ReadDouble();
-            this._MaxAngle = reader.ReadDouble();
             return this;
         }
     }
     
     [global::System.Xml.Serialization.XmlTypeAttribute(IncludeInSchema=false)]
-    public class Get : global::Microsoft.Dss.ServiceModel.Dssp.Get<global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType, global:: Microsoft.Ccr.Core.PortSet<global::RobotArm.Proxy.RobotArmState, global:: W3C.Soap.Fault>> {
+    public class Get : global::Microsoft.Dss.ServiceModel.Dssp.Get<global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType, global:: Microsoft.Ccr.Core.PortSet<global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardState, global:: W3C.Soap.Fault>> {
         
         public Get() {
         }
@@ -214,7 +71,7 @@ namespace RobotArm.Proxy {
                 base(body) {
         }
         
-        public Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body, global::Microsoft.Ccr.Core.PortSet<global::RobotArm.Proxy.RobotArmState, global:: W3C.Soap.Fault> responsePort) : 
+        public Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body, global::Microsoft.Ccr.Core.PortSet<global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardState, global:: W3C.Soap.Fault> responsePort) : 
                 base(body, responsePort) {
         }
     }
@@ -235,9 +92,9 @@ namespace RobotArm.Proxy {
     }
     
     [global::System.Xml.Serialization.XmlTypeAttribute(IncludeInSchema=false)]
-    public class RobotArmOperations : global::Microsoft.Ccr.Core.PortSet<global::Microsoft.Dss.ServiceModel.Dssp.DsspDefaultLookup, global:: Microsoft.Dss.ServiceModel.Dssp.DsspDefaultDrop, global:: RobotArm.Proxy.Get, global:: RobotArm.Proxy.Subscribe> {
+    public class RobotArmDashboardOperations : global::Microsoft.Ccr.Core.PortSet<global::Microsoft.Dss.ServiceModel.Dssp.DsspDefaultLookup, global:: Microsoft.Dss.ServiceModel.Dssp.DsspDefaultDrop, global:: Kobush.RobotArm.Dashboard.Proxy.Get, global:: Kobush.RobotArm.Dashboard.Proxy.Subscribe> {
         
-        public RobotArmOperations() {
+        public RobotArmDashboardOperations() {
         }
         
         public virtual global::Microsoft.Ccr.Core.PortSet<global::Microsoft.Dss.ServiceModel.Dssp.LookupResponse, global::W3C.Soap.Fault> DsspDefaultLookup() {
@@ -304,41 +161,41 @@ namespace RobotArm.Proxy {
             return operation.ResponsePort;
         }
         
-        public virtual global::Microsoft.Ccr.Core.PortSet<global::RobotArm.Proxy.RobotArmState, global:: W3C.Soap.Fault> Get() {
+        public virtual global::Microsoft.Ccr.Core.PortSet<global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardState, global:: W3C.Soap.Fault> Get() {
             global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body = new global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType();
-            global::RobotArm.Proxy.Get operation = new global::RobotArm.Proxy.Get(body);
+            global::Kobush.RobotArm.Dashboard.Proxy.Get operation = new global::Kobush.RobotArm.Dashboard.Proxy.Get(body);
             this.Post(operation);
             return operation.ResponsePort;
         }
         
-        public virtual global::Microsoft.Ccr.Core.Choice Get(out global::RobotArm.Proxy.Get operation) {
+        public virtual global::Microsoft.Ccr.Core.Choice Get(out global::Kobush.RobotArm.Dashboard.Proxy.Get operation) {
             global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body = new global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType();
-            operation = new global::RobotArm.Proxy.Get(body);
+            operation = new global::Kobush.RobotArm.Dashboard.Proxy.Get(body);
             this.Post(operation);
             return operation.ResponsePort;
         }
         
-        public virtual global::Microsoft.Ccr.Core.PortSet<global::RobotArm.Proxy.RobotArmState, global:: W3C.Soap.Fault> Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body) {
+        public virtual global::Microsoft.Ccr.Core.PortSet<global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardState, global:: W3C.Soap.Fault> Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body) {
             if ((body == null)) {
                 body = new global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType();
             }
-            global::RobotArm.Proxy.Get operation = new global::RobotArm.Proxy.Get(body);
+            global::Kobush.RobotArm.Dashboard.Proxy.Get operation = new global::Kobush.RobotArm.Dashboard.Proxy.Get(body);
             this.Post(operation);
             return operation.ResponsePort;
         }
         
-        public virtual global::Microsoft.Ccr.Core.Choice Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body, out global::RobotArm.Proxy.Get operation) {
+        public virtual global::Microsoft.Ccr.Core.Choice Get(global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType body, out global::Kobush.RobotArm.Dashboard.Proxy.Get operation) {
             if ((body == null)) {
                 body = new global::Microsoft.Dss.ServiceModel.Dssp.GetRequestType();
             }
-            operation = new global::RobotArm.Proxy.Get(body);
+            operation = new global::Kobush.RobotArm.Dashboard.Proxy.Get(body);
             this.Post(operation);
             return operation.ResponsePort;
         }
         
         public virtual global::Microsoft.Ccr.Core.PortSet<global::Microsoft.Dss.ServiceModel.Dssp.SubscribeResponseType, global:: W3C.Soap.Fault> Subscribe(global::Microsoft.Ccr.Core.IPort notificationPort, params System.Type[] types) {
             global::Microsoft.Dss.ServiceModel.Dssp.SubscribeRequestType body = new global::Microsoft.Dss.ServiceModel.Dssp.SubscribeRequestType();
-            global::RobotArm.Proxy.Subscribe operation = new global::RobotArm.Proxy.Subscribe(body);
+            global::Kobush.RobotArm.Dashboard.Proxy.Subscribe operation = new global::Kobush.RobotArm.Dashboard.Proxy.Subscribe(body);
             operation.NotificationPort = notificationPort;
             if ((types != null)) {
                 body.TypeFilter = new string[types.Length];
@@ -350,9 +207,9 @@ namespace RobotArm.Proxy {
             return operation.ResponsePort;
         }
         
-        public virtual global::Microsoft.Ccr.Core.Choice Subscribe(global::Microsoft.Ccr.Core.IPort notificationPort, out global::RobotArm.Proxy.Subscribe operation, params System.Type[] types) {
+        public virtual global::Microsoft.Ccr.Core.Choice Subscribe(global::Microsoft.Ccr.Core.IPort notificationPort, out global::Kobush.RobotArm.Dashboard.Proxy.Subscribe operation, params System.Type[] types) {
             global::Microsoft.Dss.ServiceModel.Dssp.SubscribeRequestType body = new global::Microsoft.Dss.ServiceModel.Dssp.SubscribeRequestType();
-            operation = new global::RobotArm.Proxy.Subscribe(body);
+            operation = new global::Kobush.RobotArm.Dashboard.Proxy.Subscribe(body);
             operation.NotificationPort = notificationPort;
             if ((types != null)) {
                 body.TypeFilter = new string[types.Length];
@@ -368,7 +225,7 @@ namespace RobotArm.Proxy {
             if ((body == null)) {
                 body = new global::Microsoft.Dss.ServiceModel.Dssp.SubscribeRequestType();
             }
-            global::RobotArm.Proxy.Subscribe operation = new global::RobotArm.Proxy.Subscribe(body);
+            global::Kobush.RobotArm.Dashboard.Proxy.Subscribe operation = new global::Kobush.RobotArm.Dashboard.Proxy.Subscribe(body);
             operation.NotificationPort = notificationPort;
             if ((types != null)) {
                 body.TypeFilter = new string[types.Length];
@@ -380,11 +237,11 @@ namespace RobotArm.Proxy {
             return operation.ResponsePort;
         }
         
-        public virtual global::Microsoft.Ccr.Core.Choice Subscribe(global::Microsoft.Dss.ServiceModel.Dssp.SubscribeRequestType body, global::Microsoft.Ccr.Core.IPort notificationPort, out global::RobotArm.Proxy.Subscribe operation, params System.Type[] types) {
+        public virtual global::Microsoft.Ccr.Core.Choice Subscribe(global::Microsoft.Dss.ServiceModel.Dssp.SubscribeRequestType body, global::Microsoft.Ccr.Core.IPort notificationPort, out global::Kobush.RobotArm.Dashboard.Proxy.Subscribe operation, params System.Type[] types) {
             if ((body == null)) {
                 body = new global::Microsoft.Dss.ServiceModel.Dssp.SubscribeRequestType();
             }
-            operation = new global::RobotArm.Proxy.Subscribe(body);
+            operation = new global::Kobush.RobotArm.Dashboard.Proxy.Subscribe(body);
             operation.NotificationPort = notificationPort;
             if ((types != null)) {
                 body.TypeFilter = new string[types.Length];
@@ -398,11 +255,11 @@ namespace RobotArm.Proxy {
     }
     
     [global::System.Xml.Serialization.XmlTypeAttribute(IncludeInSchema=false)]
-    [global::System.ComponentModel.DescriptionAttribute("RobotArm service (no description provided)")]
-    [global::System.ComponentModel.DisplayNameAttribute("RobotArm")]
+    [global::System.ComponentModel.DescriptionAttribute("RobotArmDashboard service (no description provided)")]
+    [global::System.ComponentModel.DisplayNameAttribute("RobotArmDashboard")]
     public class Contract {
         
-        public const string Identifier = "http://schemas.tempuri.org/2012/04/robotarm.html";
+        public const string Identifier = "http://schemas.tempuri.org/2012/04/robotarmdashboard.html";
         
         /// <summary>Creates a new instance of the service.</summary>
         /// <param name="constructorServicePort">Service constructor port</param>
@@ -411,7 +268,7 @@ namespace RobotArm.Proxy {
         /// <returns>create service response port</returns>
         public static global::Microsoft.Dss.ServiceModel.Dssp.DsspResponsePort<Microsoft.Dss.ServiceModel.Dssp.CreateResponse> CreateService(global::Microsoft.Dss.Services.Constructor.ConstructorPort constructorServicePort, string service, params Microsoft.Dss.ServiceModel.Dssp.PartnerType[] partners) {
             global::Microsoft.Dss.ServiceModel.Dssp.DsspResponsePort<Microsoft.Dss.ServiceModel.Dssp.CreateResponse> result = new global::Microsoft.Dss.ServiceModel.Dssp.DsspResponsePort<Microsoft.Dss.ServiceModel.Dssp.CreateResponse>();
-            global::Microsoft.Dss.ServiceModel.Dssp.ServiceInfoType serviceInfo = new global::Microsoft.Dss.ServiceModel.Dssp.ServiceInfoType("http://schemas.tempuri.org/2012/04/robotarm.html", service);
+            global::Microsoft.Dss.ServiceModel.Dssp.ServiceInfoType serviceInfo = new global::Microsoft.Dss.ServiceModel.Dssp.ServiceInfoType("http://schemas.tempuri.org/2012/04/robotarmdashboard.html", service);
             if ((partners != null)) {
                 serviceInfo.PartnerList = new System.Collections.Generic.List<Microsoft.Dss.ServiceModel.Dssp.PartnerType>(partners);
             }
@@ -426,7 +283,7 @@ namespace RobotArm.Proxy {
         /// <returns>create service response port</returns>
         public static global::Microsoft.Dss.ServiceModel.Dssp.DsspResponsePort<Microsoft.Dss.ServiceModel.Dssp.CreateResponse> CreateService(global::Microsoft.Dss.Services.Constructor.ConstructorPort constructorServicePort, params Microsoft.Dss.ServiceModel.Dssp.PartnerType[] partners) {
             global::Microsoft.Dss.ServiceModel.Dssp.DsspResponsePort<Microsoft.Dss.ServiceModel.Dssp.CreateResponse> result = new global::Microsoft.Dss.ServiceModel.Dssp.DsspResponsePort<Microsoft.Dss.ServiceModel.Dssp.CreateResponse>();
-            global::Microsoft.Dss.ServiceModel.Dssp.ServiceInfoType serviceInfo = new global::Microsoft.Dss.ServiceModel.Dssp.ServiceInfoType("http://schemas.tempuri.org/2012/04/robotarm.html", null);
+            global::Microsoft.Dss.ServiceModel.Dssp.ServiceInfoType serviceInfo = new global::Microsoft.Dss.ServiceModel.Dssp.ServiceInfoType("http://schemas.tempuri.org/2012/04/robotarmdashboard.html", null);
             if ((partners != null)) {
                 serviceInfo.PartnerList = new System.Collections.Generic.List<Microsoft.Dss.ServiceModel.Dssp.PartnerType>(partners);
             }
@@ -439,13 +296,10 @@ namespace RobotArm.Proxy {
     public class CombinedOperationsPort : global::Microsoft.Dss.Core.DssCombinedOperationsPort {
         
         public CombinedOperationsPort() {
-            this.RobotArmOperations = new global::RobotArm.Proxy.RobotArmOperations();
-            this.ArticulatedArmOperations = new global::Microsoft.Robotics.Services.ArticulatedArm.Proxy.ArticulatedArmOperations();
-            base.Initialize(new global::Microsoft.Dss.Core.DssOperationsPortMetadata(this.RobotArmOperations, "http://schemas.tempuri.org/2012/04/robotarm.html", "RobotArmOperations", ""), new global::Microsoft.Dss.Core.DssOperationsPortMetadata(this.ArticulatedArmOperations, "http://schemas.microsoft.com/2006/06/articulatedarm.html", "ArticulatedArmOperations", null));
+            this.RobotArmDashboardOperations = new global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardOperations();
+            base.Initialize(new global::Microsoft.Dss.Core.DssOperationsPortMetadata(this.RobotArmDashboardOperations, "http://schemas.tempuri.org/2012/04/robotarmdashboard.html", "RobotArmDashboardOperations", ""));
         }
         
-        public global::RobotArm.Proxy.RobotArmOperations RobotArmOperations;
-        
-        public global::Microsoft.Robotics.Services.ArticulatedArm.Proxy.ArticulatedArmOperations ArticulatedArmOperations;
+        public global::Kobush.RobotArm.Dashboard.Proxy.RobotArmDashboardOperations RobotArmDashboardOperations;
     }
 }

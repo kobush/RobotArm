@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Kobush.RobotArm.Common;
 using Microsoft.Ccr.Core;
 using Microsoft.Dss.Core.Attributes;
 using Microsoft.Robotics.PhysicalModel;
-using Microsoft.Robotics.Simulation;
 using Microsoft.Robotics.Simulation.Engine;
 using Microsoft.Robotics.Simulation.Physics;
 
-namespace Kobush.Simulation.RobotArm
+namespace Kobush.RobotArm.Simulation
 {
     [DataContract]
     public class SimulatedRobotArmEntity : VisualEntity

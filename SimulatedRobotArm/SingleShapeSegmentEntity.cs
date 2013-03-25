@@ -3,7 +3,7 @@ using Microsoft.Robotics.PhysicalModel;
 using Microsoft.Robotics.Simulation.Engine;
 using Microsoft.Robotics.Simulation.Physics;
 
-namespace Kobush.Simulation.RobotArm
+namespace Kobush.RobotArm.Simulation
 {
     [DataContract]
     public class SingleShapeSegmentEntity : SingleShapeEntity

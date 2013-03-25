@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--This file was created with the Microsoft Visual Programming Language.-->
+<Manifest xmlns:robotarmdashboard="http://schemas.tempuri.org/2012/04/robotarmdashboard.html" xmlns:simulatedrobotarm="http://schemas.tempuri.org/2012/04/simulatedrobotarm.html" xmlns:dssp="http://schemas.microsoft.com/xw/2004/10/dssp.html" xmlns:this="urn:uuid:269b5d70-5bae-45da-a79a-a7357d1b95ba" xmlns="http://schemas.microsoft.com/xw/2004/10/manifest.html">
+  <CreateServiceList>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.tempuri.org/2012/04/robotarmdashboard.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/2006/06/articulatedarm.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>robotarmdashboard:Arm</dssp:Name>
+          <dssp:ServiceName>this:SimulatedRobotArm</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:robotarmdashboard</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.tempuri.org/2012/04/simulatedrobotarm.html</dssp:Contract>
+      <dssp:PartnerList />
+      <Name>this:SimulatedRobotArm</Name>
+    </ServiceRecordType>
+  </CreateServiceList>
+</Manifest>

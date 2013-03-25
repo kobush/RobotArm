@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Kobush.RobotArm.Common;
 using Microsoft.Ccr.Adapters.WinForms;
 using Microsoft.Ccr.Core;
 using Microsoft.Dss.Core.Attributes;
@@ -15,7 +16,7 @@ using armproxy = Microsoft.Robotics.Services.ArticulatedArm.Proxy;
 using engineproxy = Microsoft.Robotics.Simulation.Engine.Proxy;
 using submgr = Microsoft.Dss.Services.SubscriptionManager;
 
-namespace Kobush.Simulation.RobotArm
+namespace Kobush.RobotArm.Simulation
 {
 	[Contract(Contract.Identifier)]
     [DisplayName("SimulatedRobotArm")]
@@ -58,11 +59,14 @@ namespace Kobush.Simulation.RobotArm
         // This port receives events from the user interface
 	    private readonly FromWinformEvents _fromWinformPort = new FromWinformEvents();
 
-        SimulatedRobotArmForm _form = null;
+        SimulatedRobotArmForm _form;
+
+	    private KinematicsSolver _kinematics;
 
 		public SimulatedRobotArm(DsspServiceCreationPort creationPort)
 			: base(creationPort)
 		{
+            _kinematics = new KinematicsSolver(new KinematicsConfiguration());
 		}
 		
 		protected override void Start()
@@ -312,9 +316,9 @@ namespace Kobush.Simulation.RobotArm
         {
             float baseAngle, shoulder, elbow, wrist;
 
-            _moveTargetEntity.Position = new xna.Vector3(mx, my, mz); 
+            _moveTargetEntity.Position = new xna.Vector3(mx, my, mz);
 
-            if (!InverseKinematics(mx, my, mz, p, out baseAngle, out shoulder, out elbow, out wrist))
+            if (!_kinematics.InverseKinematics(mx, my, mz, p, out baseAngle, out shoulder, out elbow, out wrist))
             {
                 var s = new SuccessFailurePort();
                 s.Post(new Exception("Inverse Kinematics failed"));
@@ -339,61 +343,6 @@ namespace Kobush.Simulation.RobotArm
             return result;
         }
 
-	    private static bool InverseKinematics(
-            float mx, 
-            float my, 
-            float mz, 
-            float p,
-            out float baseAngle,
-            out float shoulder,
-            out float elbow,
-            out float wrist)
-	    {
-            // physical attributes of the arm
-	        float L1 = 0.121f; //LowerHeight - LowerDepth; // length of lower arm
-	        float L2 = 0.122f; // UpperHeight - UpperBottomJointOffset; // length of lower
-	        float Grip = SimulatedRobotArmEntity.GripperHeight;
-	        float L3 = SimulatedRobotArmEntity.WristHeight + Grip; // wrist + gripper length
-	        float H = SimulatedRobotArmEntity.BaseHeight + SimulatedRobotArmEntity.TopGap +
-	                  SimulatedRobotArmEntity.TopLowerJointOffset.Y; // height from the base to first joint
-	        float G = SimulatedRobotArmEntity.BaseRadius; // radius of the base
-
-	        float r = (float) Math.Sqrt(mx*mx + mz*mz); // horizontal distance to the target
-	        baseAngle = (float) Math.Atan2(mx, mz); // angle to the target
-
-            // calculates coordinates of wrist joint (end of ulna)
-	        float pRad = Conversions.DegreesToRadians(p);
-	        float rb = (float) ((r - L3*Math.Cos(pRad))/(2*L1));
-	        float yb = (float) ((my - H - L3*Math.Sin(pRad))/(2*L1));
-
-	        float q = (float) (Math.Sqrt(1/(rb*rb + yb*yb) - 1));
-	        float p1 = (float) (Math.Atan2(yb + q*rb, rb - q*yb)); // angle of humerus from ground
-	        float p2 = (float) (Math.Atan2(yb - q*rb, rb + q*yb)); // angle of ulna from ground
-
-	        shoulder = p1 - Conversions.DegreesToRadians(90); // angle of the shoulder joint
-            elbow = p2 - shoulder - Conversions.DegreesToRadians(90); // angle of the wrist joint
-	        wrist = pRad - p2; // angle of the wrist joint
-
-            // Convert all values to degrees
-            baseAngle = Conversions.RadiansToDegrees(baseAngle);
-            shoulder = Conversions.RadiansToDegrees(shoulder);
-            elbow = Conversions.RadiansToDegrees(elbow);
-            wrist = Conversions.RadiansToDegrees(wrist);
-
-	        // Check to make sure that the solution is valid
-	        if (Single.IsNaN(baseAngle) ||
-	            Single.IsNaN(shoulder) ||
-	            Single.IsNaN(elbow) ||
-	            Single.IsNaN(wrist))
-	        {
-	            // Use for debugging only!
-	            Console.WriteLine("No solution to Inverse Kinematics");
-	            return false;
-	        }
-
-            // solution found
-            return true;
-	    }
 
         // This method is executed if the MoveTo method fails
         void ShowError(Exception e)
@@ -440,7 +389,7 @@ namespace Kobush.Simulation.RobotArm
             float baseAngle, shoulder, elbow, wrist;
 
             // Use Inverse Kinematics to calculate the joint angles
-            if (!InverseKinematics(x, y, z, p, out baseAngle, out shoulder, out elbow, out wrist))
+            if (!_kinematics.InverseKinematics(x, y, z, p, out baseAngle, out shoulder, out elbow, out wrist))
             {
                 // The results were not a valid pose!
                 // Don't attempt the move or it might break the arm
@@ -463,7 +412,7 @@ namespace Kobush.Simulation.RobotArm
             }
 
             yield return Arbiter.Choice(_robotArm.MoveTo(baseAngle, shoulder, elbow, wrist, rotateVal0, gripperVal0, time),
-                delegate(SuccessResult s) { success = true; },
+                delegate { success = true; },
                 ShowError);
 
             if (success)

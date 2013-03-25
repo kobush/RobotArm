@@ -1,43 +1,46 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using Microsoft.Ccr.Core;
 using Microsoft.Dss.Core.Attributes;
 using Microsoft.Dss.ServiceModel.Dssp;
 using Microsoft.Dss.ServiceModel.DsspServiceBase;
 using W3C.Soap;
 
-using pololuproxy = PololuMaestro.Proxy;
-using armproxy = Microsoft.Robotics.Services.ArticulatedArm.Proxy;
-
-namespace RobotArm
+namespace Kobush.RobotArm.Dashboard
 {
     /// <summary>
-    /// RobotArm contract class
+    /// RobotArmDashboard contract class
     /// </summary>
     public sealed class Contract
     {
         /// <summary>
-        /// DSS contract identifer for RobotArm
+        /// DSS contract identifer for RobotArmDashboard
         /// </summary>
         [DataMember]
-        public const string Identifier = "http://schemas.tempuri.org/2012/04/robotarm.html";
+        public const string Identifier = "http://schemas.tempuri.org/2012/04/robotarmdashboard.html";
     }
 
-
     /// <summary>
-    /// RobotArm main operations port
+    /// RobotArmDashboard state
     /// </summary>
-    [ServicePort]
-    public class RobotArmOperations : PortSet<DsspDefaultLookup, DsspDefaultDrop, Get, Subscribe>
+    [DataContract]
+    public class RobotArmDashboardState
     {
     }
 
     /// <summary>
-    /// RobotArm get operation
+    /// RobotArmDashboard main operations port
     /// </summary>
-    public class Get : Get<GetRequestType, PortSet<RobotArmState, Fault>>
+    [ServicePort]
+    public class RobotArmDashboardOperations : PortSet<DsspDefaultLookup, DsspDefaultDrop, Get, Subscribe>
+    {
+    }
+
+    /// <summary>
+    /// RobotArmDashboard get operation
+    /// </summary>
+    public class Get : Get<GetRequestType, PortSet<RobotArmDashboardState, Fault>>
     {
         /// <summary>
         /// Creates a new instance of Get
@@ -60,14 +63,14 @@ namespace RobotArm
         /// </summary>
         /// <param name="body">the request message body</param>
         /// <param name="responsePort">the response port for the request</param>
-        public Get(GetRequestType body, PortSet<RobotArmState, Fault> responsePort)
+        public Get(GetRequestType body, PortSet<RobotArmDashboardState, Fault> responsePort)
             : base(body, responsePort)
         {
         }
     }
 
     /// <summary>
-    /// RobotArm subscribe operation
+    /// RobotArmDashboard subscribe operation
     /// </summary>
     public class Subscribe : Subscribe<SubscribeRequestType, PortSet<SubscribeResponseType, Fault>>
     {
@@ -96,43 +99,6 @@ namespace RobotArm
             : base(body, responsePort)
         {
         }
-    }
-
-
-    /// <summary>
-    /// RobotArm state
-    /// </summary>
-    [DataContract]
-    public class RobotArmState : armproxy.ArticulatedArmState
-    {
-        public RobotArmState ()
-        {
-        }
-    }
-
-    [DataContract]
-    public class JointState
-    {
-        [DataMember]
-        public string Name { get; set; }
-
-        [DataMember]
-        public int Channel { get; set; }
-
-        [DataMember]
-        public double Angle { get; set; }
-
-        [DataMember]
-        public double TargetAngle { get; set; }
-
-        [DataMember]
-        public double MinAngle { get; set; }
-
-        [DataMember]
-        public double MaxAngle { get; set; }
-
-        [XmlIgnore]
-        public pololuproxy.ChannelSetting ChannelSetting { get; set; }
     }
 }
 

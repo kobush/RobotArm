@@ -84,6 +84,11 @@ namespace RobotArm
             LogInfo(LogGroups.Activation, "Service uri: " + base.FindServiceAliasFromScheme(Uri.UriSchemeHttp));
         }
 
+        private void InitializeArmState()
+        {
+            
+        }
+
         /// <summary>
         /// Handles Subscribe messages
         /// </summary>
@@ -165,8 +170,10 @@ namespace RobotArm
             string name = update.Body.JointName;
             JointState j = _jointLookup[name];
 
+/*
             update.Body.TargetOrientation;
             update.Body.TargetPosition;
+*/
 
         }
 
@@ -177,8 +184,10 @@ namespace RobotArm
         [ServiceHandler(PortFieldName = "_armPort")]
         public void SetJointTargetVelocityHandler(armproxy.SetJointTargetVelocity update)
         {
+/*
             update.Body.JointName;
             update.Body.TargetVelocity;
+*/
         }
 
         /// <summary>

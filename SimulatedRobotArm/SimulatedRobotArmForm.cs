@@ -3,7 +3,7 @@ using System.Windows.Forms;
 //using System.Data;
 //using System.Drawing;
 
-namespace Kobush.Simulation.RobotArm
+namespace Kobush.RobotArm.Simulation
 {
     public partial class SimulatedRobotArmForm : Form
     {

@@ -6,7 +6,7 @@
     >
     <CreateServiceList>
         <ServiceRecordType>
-            <dssp:Contract>http://schemas.tempuri.org/2012/03/simulatedrobotarm.html</dssp:Contract>
+            <dssp:Contract>http://schemas.tempuri.org/2012/04/simulatedrobotarm.html</dssp:Contract>
         </ServiceRecordType>
       <ServiceRecordType>
         <dssp:Contract>http://www.promrds.com/contracts/2007/09/jointmover.html</dssp:Contract>

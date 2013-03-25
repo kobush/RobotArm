@@ -28,18 +28,82 @@ namespace Dss.Transforms.TransformRobotArm {
         public static void Register() {
             global::Microsoft.Dss.Core.Transforms.TransformBase.AddProxyTransform(typeof(global::RobotArm.Proxy.RobotArmState), new global::Microsoft.Dss.Core.Attributes.Transform(RobotArm_Proxy_RobotArmState_TO_RobotArm_RobotArmState));
             global::Microsoft.Dss.Core.Transforms.TransformBase.AddSourceTransform(typeof(global::RobotArm.RobotArmState), new global::Microsoft.Dss.Core.Attributes.Transform(RobotArm_RobotArmState_TO_RobotArm_Proxy_RobotArmState));
+            global::Microsoft.Dss.Core.Transforms.TransformBase.AddProxyTransform(typeof(global::RobotArm.Proxy.JointState), new global::Microsoft.Dss.Core.Attributes.Transform(RobotArm_Proxy_JointState_TO_RobotArm_JointState));
+            global::Microsoft.Dss.Core.Transforms.TransformBase.AddSourceTransform(typeof(global::RobotArm.JointState), new global::Microsoft.Dss.Core.Attributes.Transform(RobotArm_JointState_TO_RobotArm_Proxy_JointState));
         }
         
-        private static global::RobotArm.Proxy.RobotArmState _cachedInstance0 = new global::RobotArm.Proxy.RobotArmState();
-        
-        private static global::RobotArm.RobotArmState _cachedInstance = new global::RobotArm.RobotArmState();
-        
         public static object RobotArm_Proxy_RobotArmState_TO_RobotArm_RobotArmState(object transformFrom) {
-            return _cachedInstance;
+            global::RobotArm.RobotArmState target = new global::RobotArm.RobotArmState();
+            global::RobotArm.Proxy.RobotArmState from = ((global::RobotArm.Proxy.RobotArmState)(transformFrom));
+            if ((from.Joints != null)) {
+                int count = from.Joints.Count;
+                global::System.Collections.Generic.List<global::Microsoft.Robotics.PhysicalModel.Proxy.Joint> tmp = new global::System.Collections.Generic.List<global::Microsoft.Robotics.PhysicalModel.Proxy.Joint>(count);
+                for (int index = 0; (index < count); index = (index + 1)) {
+                    global::Microsoft.Robotics.PhysicalModel.Proxy.Joint tmp0 = default(global::Microsoft.Robotics.PhysicalModel.Proxy.Joint);
+                    if ((from.Joints[index] != null)) {
+                        global::Microsoft.Robotics.PhysicalModel.Proxy.Joint tmp1 = new global::Microsoft.Robotics.PhysicalModel.Proxy.Joint();
+                        ((Microsoft.Dss.Core.IDssSerializable)(from.Joints[index])).CopyTo(((Microsoft.Dss.Core.IDssSerializable)(tmp1)));
+                        tmp0 = tmp1;
+                    }
+                    else {
+                        tmp0 = null;
+                    }
+                    tmp.Add(tmp0);
+                }
+                target.Joints = tmp;
+            }
+            else {
+                target.Joints = null;
+            }
+            target.EndEffectorPose = from.EndEffectorPose;
+            return target;
         }
         
         public static object RobotArm_RobotArmState_TO_RobotArm_Proxy_RobotArmState(object transformFrom) {
-            return _cachedInstance0;
+            global::RobotArm.Proxy.RobotArmState target = new global::RobotArm.Proxy.RobotArmState();
+            global::RobotArm.RobotArmState from = ((global::RobotArm.RobotArmState)(transformFrom));
+            global::System.Collections.Generic.List<global::Microsoft.Robotics.PhysicalModel.Proxy.Joint> tmp = from.Joints;
+            if ((tmp != null)) {
+                int count = tmp.Count;
+                global::System.Collections.Generic.List<global::Microsoft.Robotics.PhysicalModel.Proxy.Joint> tmp0 = new global::System.Collections.Generic.List<global::Microsoft.Robotics.PhysicalModel.Proxy.Joint>(count);
+                for (int index = 0; (index < count); index = (index + 1)) {
+                    global::Microsoft.Robotics.PhysicalModel.Proxy.Joint tmp1 = default(global::Microsoft.Robotics.PhysicalModel.Proxy.Joint);
+                    global::Microsoft.Robotics.PhysicalModel.Proxy.Joint tmp2 = tmp[index];
+                    if ((tmp2 != null)) {
+                        global::Microsoft.Robotics.PhysicalModel.Proxy.Joint tmp3 = new global::Microsoft.Robotics.PhysicalModel.Proxy.Joint();
+                        ((Microsoft.Dss.Core.IDssSerializable)(tmp2)).CopyTo(((Microsoft.Dss.Core.IDssSerializable)(tmp3)));
+                        tmp1 = tmp3;
+                    }
+                    tmp0.Add(tmp1);
+                }
+                target.Joints = tmp0;
+            }
+            target.EndEffectorPose = from.EndEffectorPose;
+            return target;
+        }
+        
+        public static object RobotArm_Proxy_JointState_TO_RobotArm_JointState(object transformFrom) {
+            global::RobotArm.JointState target = new global::RobotArm.JointState();
+            global::RobotArm.Proxy.JointState from = ((global::RobotArm.Proxy.JointState)(transformFrom));
+            target.Name = from.Name;
+            target.Channel = from.Channel;
+            target.Angle = from.Angle;
+            target.TargetAngle = from.TargetAngle;
+            target.MinAngle = from.MinAngle;
+            target.MaxAngle = from.MaxAngle;
+            return target;
+        }
+        
+        public static object RobotArm_JointState_TO_RobotArm_Proxy_JointState(object transformFrom) {
+            global::RobotArm.Proxy.JointState target = new global::RobotArm.Proxy.JointState();
+            global::RobotArm.JointState from = ((global::RobotArm.JointState)(transformFrom));
+            target.Name = from.Name;
+            target.Channel = from.Channel;
+            target.Angle = from.Angle;
+            target.TargetAngle = from.TargetAngle;
+            target.MinAngle = from.MinAngle;
+            target.MaxAngle = from.MaxAngle;
+            return target;
         }
     }
 }

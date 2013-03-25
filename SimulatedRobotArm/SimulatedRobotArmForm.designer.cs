@@ -1,4 +1,4 @@
-namespace Kobush.Simulation.RobotArm
+namespace Kobush.RobotArm.Simulation
 {
     partial class SimulatedRobotArmForm
     {
