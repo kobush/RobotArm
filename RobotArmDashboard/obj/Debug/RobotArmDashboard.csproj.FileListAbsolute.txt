@@ -1,0 +1,13 @@
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\bin\RobotArmDashboard.Y2012.M04.dll
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\bin\RobotArmDashboard.Y2012.M04.pdb
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\RobotArmDashboard.csprojResolveAssemblyReference.cache
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\App.g.cs
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\MainWindow.g.cs
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\RobotArmDashboard.Y2012.M04_MarkupCompile.cache
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\RobotArmDashboard.Y2012.M04_MarkupCompile.lref
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\App.baml
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\MainWindow.baml
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\RobotArmDashboard.Y2012.M04.g.resources
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\RobotArmDashboard.Y2012.M04.dll
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArmDashboard\obj\Debug\RobotArmDashboard.Y2012.M04.pdb

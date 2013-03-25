@@ -1,0 +1,7 @@
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\bin\SimulatedRobotArm.Y2012.M04.dll
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\bin\SimulatedRobotArm.Y2012.M04.pdb
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\SimulatedRobotArm\obj\Debug\SimulatedRobotArm.csprojResolveAssemblyReference.cache
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\SimulatedRobotArm\obj\Debug\Kobush.RobotArm.Simulation.SimulatedRobotArmForm.resources
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\SimulatedRobotArm\obj\Debug\SimulatedRobotArm.csproj.GenerateResource.Cache
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\SimulatedRobotArm\obj\Debug\SimulatedRobotArm.Y2012.M04.dll
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\SimulatedRobotArm\obj\Debug\SimulatedRobotArm.Y2012.M04.pdb

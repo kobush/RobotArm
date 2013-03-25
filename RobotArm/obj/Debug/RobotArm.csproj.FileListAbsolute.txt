@@ -1,0 +1,5 @@
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\bin\RobotArm.Y2012.M04.dll
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\bin\RobotArm.Y2012.M04.pdb
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArm\obj\Debug\RobotArm.csprojResolveAssemblyReference.cache
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArm\obj\Debug\RobotArm.Y2012.M04.dll
+C:\Users\Szymon\Microsoft Robotics Dev Studio 4\kobush\RobotArm\obj\Debug\RobotArm.Y2012.M04.pdb
